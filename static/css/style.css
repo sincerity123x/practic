@@ -1,6 +1,7 @@
 :root {
   --bg: #17161b;
   --surface: #1e1d23;
+  --surface-2: #26242c;
   --line: #2c2a33;
   --text: #eeebf2;
   --dim: #a5a0ac;
@@ -262,6 +263,77 @@ a {
   font-size: 0.95rem;
 }
 
+.authors {
+  padding: 16px 0 72px;
+}
+
+.authors__title {
+  margin: 0 0 32px;
+  font: 700 2.2rem/1.2 Unbounded, sans-serif;
+}
+
+.authors__grid {
+  display: grid;
+  gap: 20px;
+}
+
+.author-card {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+}
+
+.author-card__cover {
+  height: 112px;
+  background: var(--surface-2);
+}
+
+.author-card__body {
+  padding: 16px;
+}
+
+.author-card__top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.author-card__avatar {
+  flex: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.author-card__name {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.author-card__category {
+  margin: 2px 0 0;
+  font-size: 0.8rem;
+  color: var(--mute);
+}
+
+.author-card__bottom {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.author-card__price {
+  color: var(--accent);
+  font-size: 0.9rem;
+}
+
+.author-card__subs {
+  color: var(--mute);
+  font-size: 0.8rem;
+}
+
 @media (max-width: 860px) {
   .nav {
     display: none;
@@ -280,6 +352,12 @@ a {
   }
 }
 
+@media (min-width: 640px) {
+  .authors__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (min-width: 960px) {
   .hero__inner {
     grid-template-columns: 1fr 380px;
@@ -288,5 +366,11 @@ a {
 
   .features__grid {
     grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .authors__grid {
+    grid-template-columns: repeat(4, 1fr);
   }
 }
