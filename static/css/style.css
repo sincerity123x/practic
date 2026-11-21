@@ -334,6 +334,85 @@ a {
   font-size: 0.8rem;
 }
 
+.pricing {
+  padding: 16px 0 72px;
+}
+
+.pricing__title {
+  margin: 0 0 32px;
+  font: 700 2.2rem/1.2 Unbounded, sans-serif;
+}
+
+.pricing__grid {
+  display: grid;
+  gap: 20px;
+}
+
+.plan {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+}
+
+.plan--featured {
+  border-color: var(--accent);
+  background: var(--surface-2);
+}
+
+.plan__name {
+  margin: 0;
+  color: var(--dim);
+  font-size: 0.9rem;
+}
+
+.plan__price {
+  margin: 12px 0 0;
+  font: 600 1.9rem/1.2 Unbounded, sans-serif;
+}
+
+.plan__period {
+  margin: 4px 0 0;
+  color: var(--mute);
+  font-size: 0.8rem;
+}
+
+.plan__list {
+  margin: 20px 0 24px;
+  padding: 20px 0 0;
+  border-top: 1px solid var(--line);
+  list-style: none;
+}
+
+.plan__list li {
+  position: relative;
+  margin-bottom: 10px;
+  padding-left: 16px;
+  color: var(--dim);
+  font-size: 0.9rem;
+}
+
+.plan__list li::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: 0;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--mute);
+}
+
+.plan--featured .plan__list li::before {
+  background: var(--accent);
+}
+
+.plan .btn {
+  margin-top: auto;
+}
+
 @media (max-width: 860px) {
   .nav {
     display: none;
@@ -365,6 +444,10 @@ a {
   }
 
   .features__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .pricing__grid {
     grid-template-columns: repeat(3, 1fr);
   }
 }
