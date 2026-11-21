@@ -1,0 +1,37 @@
+{% load static %}<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#17161b">
+  <title>{% block title %}Искра{% endblock %}</title>
+  <link rel="icon" type="image/svg+xml" href="{% static 'img/favicon.svg' %}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="logo" href="{% url 'core:index' %}">
+        <img src="{% static 'img/spark.svg' %}" width="22" height="22" alt="">
+        искра
+      </a>
+
+      <nav class="nav">
+        <a href="#">Авторы</a>
+        <a href="#">Тарифы</a>
+        <a href="#">Для авторов</a>
+      </nav>
+
+      <div class="actions">
+        <a class="btn btn--ghost" href="#">Войти</a>
+        <a class="btn btn--primary" href="#">Стать автором</a>
+      </div>
+    </div>
+  </header>
+
+  {% block content %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Искра{% endblock %}
+
+{% block content %}
+<main class="hero">
+  <div class="container hero__inner">
+    <div>
+      <p class="label">Платформа для авторов</p>
+      <h1 class="hero__title">Зарабатывай на том, что создаёшь</h1>
+      <p class="hero__text">Подписки, платные посты и донаты — в одном месте. Без рекламы и алгоритмов: только ты и твоя аудитория.</p>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="#">Стать автором</a>
+        <a class="btn btn--ghost" href="#">Смотреть авторов</a>
+      </div>
+      <p class="hero__note">2 400 авторов уже получают доход</p>
+    </div>
+
+    <aside class="card">
+      <div class="card__author">
+        <img class="avatar" src="{% static 'img/avatar.svg' %}" width="44" height="44" alt="">
+        <div>
+          <p class="card__name">Мира Ветрова</p>
+          <p class="card__meta">иллюстратор · 1 248 подписчиков</p>
+        </div>
+      </div>
+      <div class="card__tier">
+        <span>Тариф «Огонь»</span>
+        <span class="card__price">499 ₽ / мес</span>
+      </div>
+      <p class="card__desc">Закрытые посты, исходники и чат с автором</p>
+      <div class="card__post">
+        <img class="card__thumb" src="{% static 'img/thumb.svg' %}" width="40" height="40" alt="">
+        <div>
+          <p class="card__title">Как рождается город, которого нет</p>
+          <p class="card__date">12 ноября · 8 мин чтения</p>
+        </div>
+      </div>
+      <a class="btn btn--primary" href="#">Подписаться от 199 ₽</a>
+    </aside>
+  </div>
+</main>
+{% endblock %}
