@@ -1,7 +1,7 @@
 from django.db.models import Count, Min
 from django.shortcuts import get_object_or_404, render
 
-from .models import Author, Subscription
+from .models import Author, Post, Subscription
 
 
 def index(request):
@@ -74,3 +74,23 @@ def author_detail(request, pk):
         "subscribers": subscribers,
     }
     return render(request, "core/author.html", context)
+
+
+def post_detail(request, pk):
+    post = get_object_or_404(Post.objects.select_related("author", "tier"), pk=pk)
+
+    unlocked = post.tier is None
+
+    if not unlocked and request.user.is_authenticated:
+        if post.author.user_id == request.user.pk:
+            unlocked = True
+        else:
+            unlocked = Subscription.objects.filter(
+                user=request.user,
+                active=True,
+                tier__author=post.author,
+                tier__price__gte=post.tier.price,
+            ).exists()
+
+    context = {"post": post, "unlocked": unlocked}
+    return render(request, "core/post.html", context)

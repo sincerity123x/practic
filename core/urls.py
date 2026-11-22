@@ -8,4 +8,5 @@ urlpatterns = [
     path("", views.index, name="index"),
     path("authors/", views.authors_list, name="authors"),
     path("authors/<int:pk>/", views.author_detail, name="author"),
+    path("posts/<int:pk>/", views.post_detail, name="post"),
 ]

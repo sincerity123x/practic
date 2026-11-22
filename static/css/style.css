@@ -673,6 +673,79 @@ a {
   margin-top: 8px;
 }
 
+.post {
+  padding: 56px 0 72px;
+}
+
+.post__back {
+  color: var(--mute);
+  font-size: 0.9rem;
+}
+
+.post__title {
+  margin: 20px 0 0;
+  max-width: 24ch;
+  font: 700 2.2rem/1.2 Unbounded, sans-serif;
+}
+
+.post__meta {
+  margin: 12px 0 0;
+  color: var(--mute);
+  font-size: 0.85rem;
+}
+
+.post__cover {
+  margin-top: 28px;
+  height: 300px;
+  border-radius: 12px;
+  background: var(--surface-2);
+}
+
+.post__text {
+  margin-top: 28px;
+  max-width: 70ch;
+  color: var(--dim);
+}
+
+.post__text p {
+  margin: 0 0 16px;
+}
+
+.paywall {
+  max-width: 760px;
+  margin-top: 32px;
+  padding: 28px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+}
+
+.paywall__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--surface-2);
+}
+
+.paywall__title {
+  margin: 16px 0 0;
+  font-size: 1.4rem;
+}
+
+.paywall__text {
+  margin: 8px 0 20px;
+  color: var(--dim);
+}
+
+.paywall__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
 @media (max-width: 860px) {
   .nav {
     display: none;

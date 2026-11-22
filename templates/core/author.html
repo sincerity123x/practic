@@ -31,7 +31,7 @@
       </div>
 
       {% for post in posts %}
-        <article class="post-row">
+        <a class="post-row" href="{% url 'core:post' post.pk %}">
           <img class="post-row__thumb" src="{% static 'img/thumb.svg' %}" width="72" height="72" alt="">
           <div>
             <h2 class="post-row__title">{{ post.title }}</h2>
@@ -40,7 +40,7 @@
               {% if post.tier %}· закрытый пост{% else %}· доступен всем{% endif %}
             </p>
           </div>
-        </article>
+        </a>
       {% empty %}
         <p class="author-empty">Автор пока не публиковал посты.</p>
       {% endfor %}
