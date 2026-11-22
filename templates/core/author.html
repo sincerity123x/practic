@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ author.name }} — Искра{% endblock %}
+
+{% block content %}
+<main>
+  <div class="author-cover"></div>
+
+  <div class="container author-head">
+    <img class="author-head__avatar" src="{% static 'img/avatar.svg' %}" width="104" height="104" alt="">
+    <h1 class="author-head__name">{{ author.name }}</h1>
+    <p class="author-head__category">{{ author.category }}</p>
+    <p class="author-head__about">{{ author.about }}</p>
+    <p class="author-head__stats">Подписчиков: {{ subscribers }} · Постов: {{ posts|length }}</p>
+    <div class="author-head__actions">
+      {% if tiers %}
+        <a class="btn btn--primary" href="#">Подписаться от {{ tiers.0.price }} ₽</a>
+      {% endif %}
+      <a class="btn btn--ghost" href="#">Написать</a>
+      <a class="btn btn--ghost" href="#">Донат</a>
+    </div>
+  </div>
+
+  <div class="container author-body">
+    <div>
+      <div class="author-tabs">
+        <span class="is-active">Посты</span>
+        <span>Тарифы</span>
+        <span>Об авторе</span>
+      </div>
+
+      {% for post in posts %}
+        <article class="post-row">
+          <img class="post-row__thumb" src="{% static 'img/thumb.svg' %}" width="72" height="72" alt="">
+          <div>
+            <h2 class="post-row__title">{{ post.title }}</h2>
+            <p class="post-row__meta">
+              {{ post.created_at|date:"j E" }}
+              {% if post.tier %}· закрытый пост{% else %}· доступен всем{% endif %}
+            </p>
+          </div>
+        </article>
+      {% empty %}
+        <p class="author-empty">Автор пока не публиковал посты.</p>
+      {% endfor %}
+    </div>
+
+    <aside class="tiers">
+      <h2 class="tiers__title">Тарифы</h2>
+      {% for tier in tiers %}
+        <div class="tier">
+          <div class="tier__top">
+            <span>{{ tier.name }}</span>
+            <span class="tier__price">{{ tier.price }} ₽</span>
+          </div>
+          <p class="tier__desc">{{ tier.description }}</p>
+        </div>
+      {% empty %}
+        <p class="author-empty">Тарифов пока нет.</p>
+      {% endfor %}
+      <a class="btn btn--primary" href="#">Отправить донат</a>
+    </aside>
+  </div>
+</main>
+{% endblock %}

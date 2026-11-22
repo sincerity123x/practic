@@ -527,6 +527,152 @@ a {
   font-size: 0.9rem;
 }
 
+.author-card__name a {
+  color: inherit;
+}
+
+.author-cover {
+  height: 240px;
+  background: var(--surface-2);
+}
+
+.author-head {
+  position: relative;
+}
+
+.author-head__avatar {
+  margin-top: -52px;
+  border: 4px solid var(--bg);
+  border-radius: 50%;
+}
+
+.author-head__name {
+  margin: 16px 0 0;
+  font: 700 2rem/1.2 Unbounded, sans-serif;
+}
+
+.author-head__category {
+  margin: 6px 0 0;
+  color: var(--mute);
+  font-size: 0.9rem;
+}
+
+.author-head__about {
+  margin: 12px 0 0;
+  max-width: 60ch;
+  color: var(--dim);
+}
+
+.author-head__stats {
+  margin: 12px 0 0;
+  color: var(--mute);
+  font-size: 0.85rem;
+}
+
+.author-head__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.author-body {
+  display: grid;
+  gap: 32px;
+  padding: 40px 0 72px;
+}
+
+.author-tabs {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.95rem;
+}
+
+.author-tabs span {
+  color: var(--mute);
+}
+
+.author-tabs .is-active {
+  color: var(--text);
+}
+
+.post-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 12px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+}
+
+.post-row__thumb {
+  flex: none;
+  width: 72px;
+  height: 72px;
+  border-radius: 8px;
+}
+
+.post-row__title {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.post-row__meta {
+  margin: 6px 0 0;
+  color: var(--mute);
+  font-size: 0.8rem;
+}
+
+.author-empty {
+  margin: 0;
+  color: var(--mute);
+}
+
+.tiers {
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+}
+
+.tiers__title {
+  margin: 0 0 16px;
+  font-size: 1.05rem;
+}
+
+.tier {
+  margin-bottom: 12px;
+  padding: 14px;
+  border-radius: 8px;
+  background: var(--surface-2);
+}
+
+.tier__top {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 0.95rem;
+}
+
+.tier__price {
+  color: var(--accent);
+}
+
+.tier__desc {
+  margin: 4px 0 0;
+  color: var(--mute);
+  font-size: 0.8rem;
+}
+
+.tiers .btn {
+  width: 100%;
+  margin-top: 8px;
+}
+
 @media (max-width: 860px) {
   .nav {
     display: none;
@@ -542,6 +688,12 @@ a {
 
   .hero__title {
     font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .author-cover {
+    height: 160px;
   }
 }
 
@@ -571,6 +723,11 @@ a {
 
   .catalog__grid {
     grid-template-columns: repeat(3, 1fr);
+  }
+
+  .author-body {
+    grid-template-columns: 1fr 360px;
+    align-items: start;
   }
 }
 

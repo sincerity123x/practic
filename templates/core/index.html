@@ -13,33 +13,41 @@
         <p class="hero__text">Подписки, платные посты и донаты — в одном месте. Без рекламы и алгоритмов: только ты и твоя аудитория.</p>
         <div class="hero__actions">
           <a class="btn btn--primary" href="#">Стать автором</a>
-          <a class="btn btn--ghost" href="#">Смотреть авторов</a>
+          <a class="btn btn--ghost" href="{% url 'core:authors' %}">Смотреть авторов</a>
         </div>
         <p class="hero__note">2 400 авторов уже получают доход</p>
       </div>
 
+      {% if featured %}
       <aside class="card">
-        <div class="card__author">
+        <a class="card__author" href="{% url 'core:author' featured.pk %}">
           <img class="avatar" src="{% static 'img/avatar.svg' %}" width="44" height="44" alt="">
           <div>
-            <p class="card__name">Мира Ветрова</p>
-            <p class="card__meta">иллюстратор · 1 248 подписчиков</p>
+            <p class="card__name">{{ featured.name }}</p>
+            <p class="card__meta">{{ featured.category }} · {{ featured.subs }} подписчиков</p>
           </div>
-        </div>
-        <div class="card__tier">
-          <span>Тариф «Огонь»</span>
-          <span class="card__price">499 ₽ / мес</span>
-        </div>
-        <p class="card__desc">Закрытые посты, исходники и чат с автором</p>
-        <div class="card__post">
-          <img class="card__thumb" src="{% static 'img/thumb.svg' %}" width="40" height="40" alt="">
-          <div>
-            <p class="card__title">Как рождается город, которого нет</p>
-            <p class="card__date">12 ноября · 8 мин чтения</p>
+        </a>
+        {% if featured_tier %}
+          <div class="card__tier">
+            <span>Тариф «{{ featured_tier.name }}»</span>
+            <span class="card__price">{{ featured_tier.price }} ₽ / мес</span>
           </div>
-        </div>
-        <a class="btn btn--primary" href="#">Подписаться от 199 ₽</a>
+          <p class="card__desc">{{ featured_tier.description }}</p>
+        {% endif %}
+        {% if featured_post %}
+          <div class="card__post">
+            <img class="card__thumb" src="{% static 'img/thumb.svg' %}" width="40" height="40" alt="">
+            <div>
+              <p class="card__title">{{ featured_post.title }}</p>
+              <p class="card__date">{{ featured_post.created_at|date:"j E" }}</p>
+            </div>
+          </div>
+        {% endif %}
+        {% if featured_min %}
+          <a class="btn btn--primary" href="{% url 'core:author' featured.pk %}">Подписаться от {{ featured_min.price }} ₽</a>
+        {% endif %}
       </aside>
+      {% endif %}
     </div>
   </section>
 
@@ -70,73 +78,28 @@
       <p class="label">Авторы</p>
       <h2 class="authors__title">Авторы недели</h2>
       <div class="authors__grid">
-        <article class="author-card">
-          <div class="author-card__cover"></div>
-          <div class="author-card__body">
-            <div class="author-card__top">
-              <img class="author-card__avatar" src="{% static 'img/avatar.svg' %}" width="40" height="40" alt="">
-              <div>
-                <h3 class="author-card__name">Луна Полярная</h3>
-                <p class="author-card__category">музыка</p>
+        {% for author in authors %}
+          <article class="author-card">
+            <div class="author-card__cover"></div>
+            <div class="author-card__body">
+              <div class="author-card__top">
+                <img class="author-card__avatar" src="{% static 'img/avatar.svg' %}" width="40" height="40" alt="">
+                <div>
+                  <h3 class="author-card__name"><a href="{% url 'core:author' author.pk %}">{{ author.name }}</a></h3>
+                  <p class="author-card__category">{{ author.category }}</p>
+                </div>
+              </div>
+              <div class="author-card__bottom">
+                {% if author.start_price %}
+                  <span class="author-card__price">от {{ author.start_price }} ₽</span>
+                {% endif %}
+                <span class="author-card__subs">постов: {{ author.posts_count }}</span>
               </div>
             </div>
-            <div class="author-card__bottom">
-              <span class="author-card__price">от 149 ₽</span>
-              <span class="author-card__subs">860 подписчиков</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="author-card">
-          <div class="author-card__cover"></div>
-          <div class="author-card__body">
-            <div class="author-card__top">
-              <img class="author-card__avatar" src="{% static 'img/avatar.svg' %}" width="40" height="40" alt="">
-              <div>
-                <h3 class="author-card__name">Мира Ветрова</h3>
-                <p class="author-card__category">иллюстрация</p>
-              </div>
-            </div>
-            <div class="author-card__bottom">
-              <span class="author-card__price">от 199 ₽</span>
-              <span class="author-card__subs">1 248 подписчиков</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="author-card">
-          <div class="author-card__cover"></div>
-          <div class="author-card__body">
-            <div class="author-card__top">
-              <img class="author-card__avatar" src="{% static 'img/avatar.svg' %}" width="40" height="40" alt="">
-              <div>
-                <h3 class="author-card__name">Роман Байт</h3>
-                <p class="author-card__category">код</p>
-              </div>
-            </div>
-            <div class="author-card__bottom">
-              <span class="author-card__price">от 249 ₽</span>
-              <span class="author-card__subs">640 подписчиков</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="author-card">
-          <div class="author-card__cover"></div>
-          <div class="author-card__body">
-            <div class="author-card__top">
-              <img class="author-card__avatar" src="{% static 'img/avatar.svg' %}" width="40" height="40" alt="">
-              <div>
-                <h3 class="author-card__name">Ася Тихая</h3>
-                <p class="author-card__category">тексты</p>
-              </div>
-            </div>
-            <div class="author-card__bottom">
-              <span class="author-card__price">от 99 ₽</span>
-              <span class="author-card__subs">2 100 подписчиков</span>
-            </div>
-          </div>
-        </article>
+          </article>
+        {% empty %}
+          <p class="catalog__empty">Авторов пока нет.</p>
+        {% endfor %}
       </div>
     </div>
   </section>

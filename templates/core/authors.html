@@ -29,7 +29,7 @@
             <div class="author-card__top">
               <img class="author-card__avatar" src="{% static 'img/avatar.svg' %}" width="40" height="40" alt="">
               <div>
-                <h2 class="author-card__name">{{ author.name }}</h2>
+                <h2 class="author-card__name"><a href="{% url 'core:author' author.pk %}">{{ author.name }}</a></h2>
                 <p class="author-card__category">{{ author.category }}</p>
               </div>
             </div>
