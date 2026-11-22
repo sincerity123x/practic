@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Авторы — Искра{% endblock %}
+
+{% block content %}
+<main class="catalog">
+  <div class="container">
+    <p class="label">Каталог</p>
+    <h1 class="catalog__title">Авторы</h1>
+
+    <form class="catalog__filters" method="get">
+      <input class="catalog__search" type="text" name="q" value="{{ query }}" placeholder="Поиск автора или темы">
+      <button class="btn btn--primary" type="submit">Найти</button>
+    </form>
+
+    <div class="catalog__chips">
+      <a class="chip{% if not category %} chip--active{% endif %}" href="{% url 'core:authors' %}">Все</a>
+      {% for item in categories %}
+        <a class="chip{% if item == category %} chip--active{% endif %}" href="?category={{ item }}">{{ item }}</a>
+      {% endfor %}
+    </div>
+
+    <div class="catalog__grid">
+      {% for author in authors %}
+        <article class="author-card">
+          <div class="author-card__cover"></div>
+          <div class="author-card__body">
+            <div class="author-card__top">
+              <img class="author-card__avatar" src="{% static 'img/avatar.svg' %}" width="40" height="40" alt="">
+              <div>
+                <h2 class="author-card__name">{{ author.name }}</h2>
+                <p class="author-card__category">{{ author.category }}</p>
+              </div>
+            </div>
+            <p class="author-card__text">{{ author.about }}</p>
+            <div class="author-card__bottom">
+              {% if author.start_price %}
+                <span class="author-card__price">от {{ author.start_price }} ₽</span>
+              {% endif %}
+              <span class="author-card__subs">постов: {{ author.posts_count }}</span>
+            </div>
+          </div>
+        </article>
+      {% empty %}
+        <p class="catalog__empty">Никого не нашли. Попробуй другой запрос.</p>
+      {% endfor %}
+    </div>
+  </div>
+</main>
+{% endblock %}
