@@ -7,7 +7,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.utils import timezone
 
-from .forms import LoginForm, SignupForm
+from .forms import LoginForm, PostForm, SignupForm
 from .models import Author, Donation, Post, Subscription, Tier
 
 
@@ -256,3 +256,23 @@ def dashboard(request):
         "payments": payments[:6],
     }
     return render(request, "core/dashboard.html", context)
+
+
+def post_create(request):
+    if not request.user.is_authenticated:
+        return redirect("{}?next={}".format(reverse("core:login"), reverse("core:post_create")))
+
+    author = Author.objects.filter(user=request.user).first()
+
+    if not author:
+        raise Http404
+
+    form = PostForm(author, request.POST or None)
+
+    if request.method == "POST" and form.is_valid():
+        post = form.save(commit=False)
+        post.author = author
+        post.save()
+        return redirect("core:post", post.pk)
+
+    return render(request, "core/post_form.html", {"form": form})

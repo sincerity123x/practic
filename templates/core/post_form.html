@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Новый пост — Искра{% endblock %}
+
+{% block content %}
+<main class="editor">
+  <div class="container editor__box">
+    <p class="label">Посты</p>
+    <h1 class="editor__title">Новый пост</h1>
+
+    <form class="editor__form" method="post">
+      {% csrf_token %}
+
+      {% for field in form %}
+        <div>
+          <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+          {{ field }}
+          {% for error in field.errors %}
+            <p class="auth__error">{{ error }}</p>
+          {% endfor %}
+        </div>
+      {% endfor %}
+
+      {% for error in form.non_field_errors %}
+        <p class="auth__error">{{ error }}</p>
+      {% endfor %}
+
+      <div class="editor__actions">
+        <button class="btn btn--primary" type="submit">Опубликовать</button>
+        <a class="btn btn--ghost" href="{% url 'core:dashboard' %}">Отмена</a>
+      </div>
+    </form>
+  </div>
+</main>
+{% endblock %}

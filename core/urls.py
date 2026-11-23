@@ -15,4 +15,5 @@ urlpatterns = [
     path("checkout/<int:pk>/", views.checkout, name="checkout"),
     path("authors/<int:pk>/donate/", views.donate, name="donate"),
     path("dashboard/", views.dashboard, name="dashboard"),
+    path("posts/new/", views.post_create, name="post_create"),
 ]
