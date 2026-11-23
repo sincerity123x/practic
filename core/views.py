@@ -1,7 +1,11 @@
+from django.contrib.auth import login, logout
 from django.db.models import Count, Min
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse
+from django.views.decorators.http import require_POST
 
-from .models import Author, Post, Subscription
+from .forms import LoginForm, SignupForm
+from .models import Author, Post, Subscription, Tier
 
 
 def index(request):
@@ -67,11 +71,20 @@ def author_detail(request, pk):
     tiers = author.tiers.order_by("price")
     subscribers = Subscription.objects.filter(tier__author=author, active=True).count()
 
+    subscribed = False
+    if request.user.is_authenticated:
+        subscribed = Subscription.objects.filter(
+            user=request.user,
+            tier__author=author,
+            active=True,
+        ).exists()
+
     context = {
         "author": author,
         "posts": posts,
         "tiers": tiers,
         "subscribers": subscribers,
+        "subscribed": subscribed,
     }
     return render(request, "core/author.html", context)
 
@@ -94,3 +107,59 @@ def post_detail(request, pk):
 
     context = {"post": post, "unlocked": unlocked}
     return render(request, "core/post.html", context)
+
+
+def sign_in(request):
+    if request.user.is_authenticated:
+        return redirect("core:index")
+
+    form = LoginForm(request, data=request.POST or None)
+
+    if request.method == "POST" and form.is_valid():
+        login(request, form.get_user())
+        return redirect(request.POST.get("next") or "core:index")
+
+    return render(request, "core/login.html", {"form": form})
+
+
+def sign_up(request):
+    if request.user.is_authenticated:
+        return redirect("core:index")
+
+    form = SignupForm(request.POST or None)
+
+    if request.method == "POST" and form.is_valid():
+        user = form.save()
+        login(request, user)
+        return redirect("core:index")
+
+    return render(request, "core/signup.html", {"form": form})
+
+
+@require_POST
+def sign_out(request):
+    logout(request)
+    return redirect("core:index")
+
+
+def checkout(request, pk):
+    tier = get_object_or_404(Tier.objects.select_related("author"), pk=pk)
+
+    if not request.user.is_authenticated:
+        url = "{}?next={}".format(reverse("core:login"), reverse("core:checkout", args=[tier.pk]))
+        return redirect(url)
+
+    subscription = Subscription.objects.filter(user=request.user, tier=tier).first()
+
+    if subscription and subscription.active:
+        return redirect("core:author", tier.author.pk)
+
+    if request.method == "POST":
+        if subscription:
+            subscription.active = True
+            subscription.save(update_fields=["active"])
+        else:
+            Subscription.objects.create(user=request.user, tier=tier)
+        return redirect("core:author", tier.author.pk)
+
+    return render(request, "core/checkout.html", {"tier": tier})

@@ -28,7 +28,7 @@
           Открывается с тарифа «{{ post.tier.name }}» — {{ post.tier.price }} ₽ в месяц.
         </p>
         <div class="paywall__actions">
-          <a class="btn btn--primary" href="#">Оформить за {{ post.tier.price }} ₽</a>
+          <a class="btn btn--primary" href="{% url 'core:checkout' post.tier.pk %}">Оформить за {{ post.tier.price }} ₽</a>
           <a class="btn btn--ghost" href="{% url 'core:author' post.author.pk %}">Все посты автора</a>
         </div>
       </div>

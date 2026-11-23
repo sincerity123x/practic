@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Вход — Искра{% endblock %}
+
+{% block content %}
+<main class="auth">
+  <div class="container auth__box">
+    <p class="label">Искра</p>
+    <h1 class="auth__title">Вход</h1>
+    <p class="auth__note">Войдите, чтобы открыть закрытые посты и историю платежей.</p>
+
+    <form class="auth__form" method="post">
+      {% csrf_token %}
+      <input type="hidden" name="next" value="{{ request.GET.next }}">
+
+      {% for field in form %}
+        <div>
+          <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+          {{ field }}
+          {% for error in field.errors %}
+            <p class="auth__error">{{ error }}</p>
+          {% endfor %}
+        </div>
+      {% endfor %}
+
+      {% for error in form.non_field_errors %}
+        <p class="auth__error">{{ error }}</p>
+      {% endfor %}
+
+      <button class="btn btn--primary" type="submit">Войти</button>
+    </form>
+
+    <p class="auth__switch">Нет аккаунта? <a href="{% url 'core:signup' %}">Зарегистрироваться</a></p>
+  </div>
+</main>
+{% endblock %}

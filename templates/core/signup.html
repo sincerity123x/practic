@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Регистрация — Искра{% endblock %}
+
+{% block content %}
+<main class="auth">
+  <div class="container auth__box">
+    <p class="label">Искра</p>
+    <h1 class="auth__title">Регистрация</h1>
+    <p class="auth__note">Создайте аккаунт, чтобы подписаться на авторов и поддержать их.</p>
+
+    <form class="auth__form" method="post">
+      {% csrf_token %}
+
+      {% for field in form %}
+        <div>
+          <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+          {{ field }}
+          {% if field.help_text %}
+            <div class="auth__help">{{ field.help_text|safe }}</div>
+          {% endif %}
+          {% for error in field.errors %}
+            <p class="auth__error">{{ error }}</p>
+          {% endfor %}
+        </div>
+      {% endfor %}
+
+      {% for error in form.non_field_errors %}
+        <p class="auth__error">{{ error }}</p>
+      {% endfor %}
+
+      <button class="btn btn--primary" type="submit">Создать аккаунт</button>
+    </form>
+
+    <p class="auth__switch">Уже есть аккаунт? <a href="{% url 'core:login' %}">Войти</a></p>
+  </div>
+</main>
+{% endblock %}

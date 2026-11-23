@@ -26,8 +26,16 @@
       </nav>
 
       <div class="actions">
-        <a class="btn btn--ghost" href="#">Войти</a>
-        <a class="btn btn--primary" href="#">Стать автором</a>
+        {% if user.is_authenticated %}
+          <span class="user">{{ user.username }}</span>
+          <form method="post" action="{% url 'core:logout' %}">
+            {% csrf_token %}
+            <button class="btn btn--ghost" type="submit">Выйти</button>
+          </form>
+        {% else %}
+          <a class="btn btn--ghost" href="{% url 'core:login' %}">Войти</a>
+          <a class="btn btn--primary" href="{% url 'core:signup' %}">Стать автором</a>
+        {% endif %}
       </div>
     </div>
   </header>

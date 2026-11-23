@@ -14,8 +14,10 @@
     <p class="author-head__about">{{ author.about }}</p>
     <p class="author-head__stats">Подписчиков: {{ subscribers }} · Постов: {{ posts|length }}</p>
     <div class="author-head__actions">
-      {% if tiers %}
-        <a class="btn btn--primary" href="#">Подписаться от {{ tiers.0.price }} ₽</a>
+      {% if subscribed %}
+        <span class="author-head__badge">Вы подписаны</span>
+      {% elif tiers %}
+        <a class="btn btn--primary" href="{% url 'core:checkout' tiers.0.pk %}">Подписаться от {{ tiers.0.price }} ₽</a>
       {% endif %}
       <a class="btn btn--ghost" href="#">Написать</a>
       <a class="btn btn--ghost" href="#">Донат</a>
