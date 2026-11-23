@@ -1,8 +1,11 @@
+from datetime import timedelta
+
 from django.contrib.auth import login, logout
-from django.db.models import Count, Min
+from django.db.models import Count, Min, Sum
+from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
-from django.views.decorators.http import require_POST
+from django.utils import timezone
 
 from .forms import LoginForm, SignupForm
 from .models import Author, Donation, Post, Subscription, Tier
@@ -136,7 +139,6 @@ def sign_up(request):
     return render(request, "core/signup.html", {"form": form})
 
 
-@require_POST
 def sign_out(request):
     logout(request)
     return redirect("core:index")
@@ -196,3 +198,61 @@ def donate(request, pk):
     preset = request.POST.get("custom") or request.GET.get("amount", "")
 
     return render(request, "core/donate.html", {"author": author, "error": error, "preset": preset})
+
+
+def dashboard(request):
+    if not request.user.is_authenticated:
+        return redirect("{}?next={}".format(reverse("core:login"), reverse("core:dashboard")))
+
+    author = Author.objects.filter(user=request.user).first()
+
+    if not author:
+        raise Http404
+
+    now = timezone.now()
+    month_start = now.replace(day=1, hour=0, minute=0, second=0, microsecond=0)
+    week_ago = now - timedelta(days=7)
+
+    subscriptions = Subscription.objects.filter(tier__author=author, active=True)
+    donations = Donation.objects.filter(author=author)
+
+    subscriptions_sum = subscriptions.aggregate(total=Sum("tier__price"))["total"] or 0
+    donations_sum = donations.aggregate(total=Sum("amount"))["total"] or 0
+    month_donations = (
+        donations.filter(created_at__gte=month_start).aggregate(total=Sum("amount"))["total"] or 0
+    )
+
+    payments = []
+
+    for donation in donations.select_related("user")[:5]:
+        payments.append(
+            {
+                "title": "Донат",
+                "user": donation.user.username,
+                "amount": donation.amount,
+                "date": donation.created_at,
+            }
+        )
+
+    for subscription in subscriptions.select_related("user", "tier")[:5]:
+        payments.append(
+            {
+                "title": "Подписка «{}»".format(subscription.tier.name),
+                "user": subscription.user.username,
+                "amount": subscription.tier.price,
+                "date": subscription.created_at,
+            }
+        )
+
+    payments.sort(key=lambda item: item["date"], reverse=True)
+
+    context = {
+        "author": author,
+        "revenue": subscriptions_sum + month_donations,
+        "subscribers": subscriptions.count(),
+        "new_subscribers": subscriptions.filter(created_at__gte=week_ago).count(),
+        "donations_sum": donations_sum,
+        "posts": author.posts.all()[:5],
+        "payments": payments[:6],
+    }
+    return render(request, "core/dashboard.html", context)

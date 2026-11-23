@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}Кабинет — Искра{% endblock %}
+
+{% block content %}
+<main class="dashboard">
+  <div class="container">
+    <p class="label">Кабинет</p>
+    <h1 class="dashboard__title">Дашборд</h1>
+
+    <div class="stats">
+      <div class="stat">
+        <p class="stat__label">Доход за месяц</p>
+        <p class="stat__value">{{ revenue }} ₽</p>
+      </div>
+      <div class="stat">
+        <p class="stat__label">Подписчики</p>
+        <p class="stat__value">{{ subscribers }}</p>
+      </div>
+      <div class="stat">
+        <p class="stat__label">Новые за неделю</p>
+        <p class="stat__value">+{{ new_subscribers }}</p>
+      </div>
+      <div class="stat">
+        <p class="stat__label">Донаты всего</p>
+        <p class="stat__value">{{ donations_sum }} ₽</p>
+      </div>
+    </div>
+
+    <div class="dashboard__grid">
+      <section class="panel">
+        <h2 class="panel__title">Последние посты</h2>
+        {% for post in posts %}
+          <a class="panel__row" href="{% url 'core:post' post.pk %}">
+            <span>{{ post.title }}</span>
+            <span class="panel__mute">{{ post.created_at|date:"j E" }}</span>
+          </a>
+        {% empty %}
+          <p class="panel__empty">Постов пока нет.</p>
+        {% endfor %}
+      </section>
+
+      <section class="panel">
+        <h2 class="panel__title">Последние платежи</h2>
+        {% for payment in payments %}
+          <div class="panel__row">
+            <span>{{ payment.title }} · {{ payment.user }}</span>
+            <span class="panel__amount">{{ payment.amount }} ₽</span>
+          </div>
+        {% empty %}
+          <p class="panel__empty">Платежей пока нет.</p>
+        {% endfor %}
+      </section>
+    </div>
+  </div>
+</main>
+{% endblock %}

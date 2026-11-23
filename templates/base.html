@@ -27,11 +27,11 @@
 
       <div class="actions">
         {% if user.is_authenticated %}
+          {% if user.author %}
+            <a class="user-link" href="{% url 'core:dashboard' %}">Кабинет</a>
+          {% endif %}
           <span class="user">{{ user.username }}</span>
-          <form method="post" action="{% url 'core:logout' %}">
-            {% csrf_token %}
-            <button class="btn btn--ghost" type="submit">Выйти</button>
-          </form>
+          <a class="btn btn--ghost" href="{% url 'core:logout' %}">Выйти</a>
         {% else %}
           <a class="btn btn--ghost" href="{% url 'core:login' %}">Войти</a>
           <a class="btn btn--primary" href="{% url 'core:signup' %}">Стать автором</a>
