@@ -5,7 +5,7 @@ from django.urls import reverse
 from django.views.decorators.http import require_POST
 
 from .forms import LoginForm, SignupForm
-from .models import Author, Post, Subscription, Tier
+from .models import Author, Donation, Post, Subscription, Tier
 
 
 def index(request):
@@ -163,3 +163,36 @@ def checkout(request, pk):
         return redirect("core:author", tier.author.pk)
 
     return render(request, "core/checkout.html", {"tier": tier})
+
+
+def donate(request, pk):
+    author = get_object_or_404(Author, pk=pk)
+
+    if not request.user.is_authenticated:
+        url = "{}?next={}".format(reverse("core:login"), reverse("core:donate", args=[author.pk]))
+        return redirect(url)
+
+    error = ""
+
+    if request.method == "POST":
+        raw = request.POST.get("amount") or request.POST.get("custom")
+
+        try:
+            amount = int(raw)
+        except (TypeError, ValueError):
+            amount = 0
+
+        if amount < 100:
+            error = "Минимальная сумма — 100 ₽."
+        else:
+            Donation.objects.create(
+                user=request.user,
+                author=author,
+                amount=amount,
+                message=request.POST.get("message", "").strip()[:300],
+            )
+            return redirect("core:author", author.pk)
+
+    preset = request.POST.get("custom") or request.GET.get("amount", "")
+
+    return render(request, "core/donate.html", {"author": author, "error": error, "preset": preset})

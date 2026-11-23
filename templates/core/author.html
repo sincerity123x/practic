@@ -20,7 +20,7 @@
         <a class="btn btn--primary" href="{% url 'core:checkout' tiers.0.pk %}">Подписаться от {{ tiers.0.price }} ₽</a>
       {% endif %}
       <a class="btn btn--ghost" href="#">Написать</a>
-      <a class="btn btn--ghost" href="#">Донат</a>
+      <a class="btn btn--ghost" href="{% url 'core:donate' author.pk %}">Донат</a>
     </div>
   </div>
 
@@ -61,7 +61,7 @@
       {% empty %}
         <p class="author-empty">Тарифов пока нет.</p>
       {% endfor %}
-      <a class="btn btn--primary" href="#">Отправить донат</a>
+      <a class="btn btn--primary" href="{% url 'core:donate' author.pk %}">Отправить донат</a>
     </aside>
   </div>
 </main>

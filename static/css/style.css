@@ -959,6 +959,93 @@ a {
   font-size: 0.8rem;
 }
 
+.donate {
+  padding: 64px 0 72px;
+}
+
+.donate__box {
+  max-width: 520px;
+}
+
+.donate__title {
+  margin: 0 0 8px;
+  font: 700 2rem/1.2 Unbounded, sans-serif;
+}
+
+.donate__note {
+  margin: 0;
+  color: var(--dim);
+  font-size: 0.9rem;
+}
+
+.donate__form {
+  display: grid;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.donate__label {
+  margin: 0;
+  color: var(--mute);
+  font-size: 0.8rem;
+}
+
+.donate__presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.preset {
+  display: inline-block;
+  padding: 10px 18px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.preset:hover {
+  border-color: var(--accent);
+}
+
+.preset--active {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.donate__form label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--mute);
+  font-size: 0.8rem;
+}
+
+.donate__form input,
+.donate__form textarea {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  font-size: 0.95rem;
+}
+
+.donate__form input:focus,
+.donate__form textarea:focus {
+  border-color: var(--accent);
+  outline: none;
+}
+
+.donate__form textarea {
+  resize: vertical;
+}
+
 @media (min-width: 960px) {
   .checkout__grid {
     grid-template-columns: 1fr 420px;

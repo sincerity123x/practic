@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Поддержать {{ author.name }} — Искра{% endblock %}
+
+{% block content %}
+<main class="donate">
+  <div class="container donate__box">
+    <p class="label">Поддержка</p>
+    <h1 class="donate__title">Поддержать {{ author.name }}</h1>
+    <p class="donate__note">Донат уходит автору целиком, без комиссии платформы.</p>
+
+    <form class="donate__form" method="post">
+      {% csrf_token %}
+
+      <p class="donate__label">Сумма</p>
+      <div class="donate__presets">
+        <a class="preset{% if preset == '100' %} preset--active{% endif %}" href="?amount=100">100 ₽</a>
+        <a class="preset{% if preset == '300' %} preset--active{% endif %}" href="?amount=300">300 ₽</a>
+        <a class="preset{% if preset == '500' %} preset--active{% endif %}" href="?amount=500">500 ₽</a>
+        <a class="preset{% if preset == '1000' %} preset--active{% endif %}" href="?amount=1000">1 000 ₽</a>
+      </div>
+
+      <div>
+        <label for="custom">Своя сумма</label>
+        <input id="custom" type="number" name="custom" min="100" step="50" value="{{ preset }}" placeholder="Например, 750">
+      </div>
+
+      <div>
+        <label for="message">Сообщение</label>
+        <textarea id="message" name="message" rows="3" placeholder="Пара тёплых слов автору"></textarea>
+      </div>
+
+      {% if error %}
+        <p class="auth__error">{{ error }}</p>
+      {% endif %}
+
+      <button class="btn btn--primary" type="submit">Отправить донат</button>
+    </form>
+  </div>
+</main>
+{% endblock %}
