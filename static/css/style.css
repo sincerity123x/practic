@@ -1208,6 +1208,28 @@ a {
   gap: 12px;
 }
 
+.dashboard__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.settings__saved {
+  margin: 16px 0 0;
+  color: var(--accent);
+  font-size: 0.9rem;
+}
+
+.settings__tiers {
+  margin-top: 24px;
+}
+
+.settings__hint {
+  margin: 14px 0 0;
+  color: var(--mute);
+  font-size: 0.8rem;
+}
+
 @media (min-width: 960px) {
   .checkout__grid {
     grid-template-columns: 1fr 420px;

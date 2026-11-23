@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Настройки — Искра{% endblock %}
+
+{% block content %}
+<main class="editor">
+  <div class="container editor__box">
+    <p class="label">Профиль</p>
+    <h1 class="editor__title">Настройки</h1>
+
+    {% if saved %}
+      <p class="settings__saved">Изменения сохранены.</p>
+    {% endif %}
+
+    <form class="editor__form" method="post">
+      {% csrf_token %}
+
+      {% for field in form %}
+        <div>
+          <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+          {{ field }}
+          {% for error in field.errors %}
+            <p class="auth__error">{{ error }}</p>
+          {% endfor %}
+        </div>
+      {% endfor %}
+
+      <div class="editor__actions">
+        <button class="btn btn--primary" type="submit">Сохранить</button>
+        <a class="btn btn--ghost" href="{% url 'core:author' author.pk %}">Смотреть профиль</a>
+      </div>
+    </form>
+
+    <section class="panel settings__tiers">
+      <h2 class="panel__title">Тарифы</h2>
+      {% for tier in tiers %}
+        <div class="panel__row">
+          <span>{{ tier.name }}</span>
+          <span class="panel__amount">{{ tier.price }} ₽</span>
+        </div>
+      {% empty %}
+        <p class="panel__empty">Тарифов пока нет.</p>
+      {% endfor %}
+      <p class="settings__hint">Тарифы добавляются и меняются в админке.</p>
+    </section>
+  </div>
+</main>
+{% endblock %}

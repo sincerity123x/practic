@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth.models import User
 
-from .models import Post
+from .models import Author, Post
 
 
 class LoginForm(AuthenticationForm):
@@ -43,3 +43,17 @@ class PostForm(forms.ModelForm):
         self.fields["tier"].empty_label = "Бесплатно для всех"
         self.fields["tier"].required = False
         self.fields["tier"].label_from_instance = lambda tier: "{} — {} ₽".format(tier.name, tier.price)
+
+
+class AuthorForm(forms.ModelForm):
+    class Meta:
+        model = Author
+        fields = ("name", "category", "about")
+        labels = {
+            "name": "Имя",
+            "category": "Категория",
+            "about": "О себе",
+        }
+        widgets = {
+            "about": forms.Textarea(attrs={"rows": 4}),
+        }
