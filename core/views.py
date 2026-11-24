@@ -7,11 +7,14 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.utils import timezone
 
+from .analytics import track
 from .forms import AuthorForm, LoginForm, PostForm, SignupForm
 from .models import Author, Donation, Payout, Post, Subscription, Tier
 
 
 def index(request):
+    track(request, "page_view")
+
     authors = Author.objects.annotate(
         start_price=Min("tiers__price"),
         posts_count=Count("posts", distinct=True),
@@ -38,6 +41,8 @@ def index(request):
 
 
 def authors_list(request):
+    track(request, "page_view")
+
     query = request.GET.get("q", "").strip()
     category = request.GET.get("category", "")
 
@@ -70,6 +75,8 @@ def authors_list(request):
 
 def author_detail(request, pk):
     author = get_object_or_404(Author, pk=pk)
+    track(request, "creator_view", author=author)
+
     posts = author.posts.select_related("tier")
     tiers = author.tiers.order_by("price")
     subscribers = Subscription.objects.filter(tier__author=author, active=True).count()
@@ -109,6 +116,11 @@ def post_detail(request, pk):
             ).exists()
 
     context = {"post": post, "unlocked": unlocked}
+    track(request, "post_view", author=post.author, post=post)
+
+    if post.tier and unlocked and request.user.pk != post.author.user_id:
+        track(request, "post_unlock", author=post.author, post=post, tier=post.tier)
+
     return render(request, "core/post.html", context)
 
 
@@ -162,8 +174,11 @@ def checkout(request, pk):
             subscription.save(update_fields=["active"])
         else:
             Subscription.objects.create(user=request.user, tier=tier)
+        track(request, "subscription_created", author=tier.author, tier=tier)
         return redirect("core:author", tier.author.pk)
 
+    track(request, "tier_view", author=tier.author, tier=tier)
+    track(request, "checkout_start", author=tier.author, tier=tier)
     return render(request, "core/checkout.html", {"tier": tier})
 
 
@@ -193,6 +208,7 @@ def donate(request, pk):
                 amount=amount,
                 message=request.POST.get("message", "").strip()[:300],
             )
+            track(request, "donation_sent", author=author)
             return redirect("core:author", author.pk)
 
     preset = request.POST.get("custom") or request.GET.get("amount", "")

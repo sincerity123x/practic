@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Author, Donation, Payout, Post, Subscription, Tier
+from .models import Author, Donation, Event, Payout, Post, Subscription, Tier
 
 
 @admin.register(Author)
@@ -38,3 +38,10 @@ class DonationAdmin(admin.ModelAdmin):
 class PayoutAdmin(admin.ModelAdmin):
     list_display = ("author", "amount", "paid", "created_at")
     list_filter = ("paid", "author")
+
+
+@admin.register(Event)
+class EventAdmin(admin.ModelAdmin):
+    list_display = ("name", "user", "author", "post", "created_at")
+    list_filter = ("name", "created_at")
+    search_fields = ("name", "user__username")
