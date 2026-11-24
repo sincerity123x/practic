@@ -1230,6 +1230,25 @@ a {
   font-size: 0.8rem;
 }
 
+.stats--three {
+  margin-top: 24px;
+}
+
+.panel--wide {
+  margin-top: 24px;
+}
+
+.btn[disabled] {
+  opacity: 0.5;
+  cursor: default;
+}
+
+@media (min-width: 960px) {
+  .stats--three {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
 @media (min-width: 960px) {
   .checkout__grid {
     grid-template-columns: 1fr 420px;

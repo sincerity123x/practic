@@ -17,4 +17,5 @@ urlpatterns = [
     path("dashboard/", views.dashboard, name="dashboard"),
     path("posts/new/", views.post_create, name="post_create"),
     path("settings/", views.author_settings, name="author_settings"),
+    path("payouts/", views.payouts, name="payouts"),
 ]

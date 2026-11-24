@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Выплаты — Искра{% endblock %}
+
+{% block content %}
+<main class="dashboard">
+  <div class="container">
+    <p class="label">Выплаты</p>
+    <div class="dashboard__head">
+      <h1 class="dashboard__title">Выплаты</h1>
+      <form method="post">
+        {% csrf_token %}
+        <button class="btn btn--primary" type="submit"{% if not available %} disabled{% endif %}>
+          Вывести {{ available }} ₽
+        </button>
+      </form>
+    </div>
+
+    <div class="stats stats--three">
+      <div class="stat">
+        <p class="stat__label">Доступно к выводу</p>
+        <p class="stat__value">{{ available }} ₽</p>
+      </div>
+      <div class="stat">
+        <p class="stat__label">Выплачено всего</p>
+        <p class="stat__value">{{ paid_total }} ₽</p>
+      </div>
+      <div class="stat">
+        <p class="stat__label">Комиссия платформы</p>
+        <p class="stat__value">10%</p>
+      </div>
+    </div>
+
+    <section class="panel panel--wide">
+      <h2 class="panel__title">История выплат</h2>
+      {% for payout in history %}
+        <div class="panel__row">
+          <span>{{ payout.created_at|date:"j E" }}</span>
+          <span class="panel__amount">{{ payout.amount }} ₽</span>
+          <span class="panel__mute">{% if payout.paid %}Выплачено{% else %}В обработке{% endif %}</span>
+        </div>
+      {% empty %}
+        <p class="panel__empty">Выплат пока не было.</p>
+      {% endfor %}
+    </section>
+  </div>
+</main>
+{% endblock %}

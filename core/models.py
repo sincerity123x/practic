@@ -59,3 +59,16 @@ class Donation(models.Model):
 
     def __str__(self):
         return f"{self.amount} — {self.author.name}"
+
+
+class Payout(models.Model):
+    author = models.ForeignKey(Author, on_delete=models.CASCADE, related_name="payouts")
+    amount = models.PositiveIntegerField()
+    paid = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return f"{self.amount} — {self.author.name}"

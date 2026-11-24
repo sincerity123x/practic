@@ -8,7 +8,7 @@ from django.urls import reverse
 from django.utils import timezone
 
 from .forms import AuthorForm, LoginForm, PostForm, SignupForm
-from .models import Author, Donation, Post, Subscription, Tier
+from .models import Author, Donation, Payout, Post, Subscription, Tier
 
 
 def index(request):
@@ -301,3 +301,37 @@ def author_settings(request):
         "saved": saved,
     }
     return render(request, "core/settings.html", context)
+
+
+def payouts(request):
+    if not request.user.is_authenticated:
+        return redirect("{}?next={}".format(reverse("core:login"), reverse("core:payouts")))
+
+    author = Author.objects.filter(user=request.user).first()
+
+    if not author:
+        raise Http404
+
+    donations_sum = Donation.objects.filter(author=author).aggregate(total=Sum("amount"))["total"] or 0
+    subscriptions_sum = (
+        Subscription.objects.filter(tier__author=author, active=True)
+        .aggregate(total=Sum("tier__price"))["total"]
+        or 0
+    )
+    paid_total = Payout.objects.filter(author=author, paid=True).aggregate(total=Sum("amount"))["total"] or 0
+    pending_total = Payout.objects.filter(author=author, paid=False).aggregate(total=Sum("amount"))["total"] or 0
+
+    available = donations_sum + subscriptions_sum - paid_total - pending_total
+    available = max(available, 0)
+
+    if request.method == "POST" and available > 0:
+        Payout.objects.create(author=author, amount=available)
+        return redirect("core:payouts")
+
+    context = {
+        "author": author,
+        "available": available,
+        "paid_total": paid_total,
+        "history": Payout.objects.filter(author=author),
+    }
+    return render(request, "core/payouts.html", context)
