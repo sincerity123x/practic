@@ -1,0 +1,706 @@
+[
+  {
+    "model": "auth.user",
+    "pk": 100,
+    "fields": {
+      "password": "pbkdf2_sha256$870000$bj2E7s0KI3LggZjzFvTu2i$7BCbO8e6b9W0yT4QqdsqgWgDzM5ItUFpB8we0TXz5Kw=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "luna",
+      "first_name": "",
+      "last_name": "",
+      "email": "luna@example.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2026-11-21T23:14:31.014489+00:00",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 101,
+    "fields": {
+      "password": "pbkdf2_sha256$870000$NU00hkPc0hI6VNi9oTs8LM$swgAxrZ3fdr5dr7+PsnVDfhe8zgaWF89yolyj1WGYPA=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "mira",
+      "first_name": "",
+      "last_name": "",
+      "email": "mira@example.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2026-11-21T23:14:31.732542+00:00",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 102,
+    "fields": {
+      "password": "pbkdf2_sha256$870000$YxloALR4cUG3vyVuyvwet1$KSWRunk4Sl2y0v2gHSh8VSpIPtp5kjPi/fvzH004KS4=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "roman",
+      "first_name": "",
+      "last_name": "",
+      "email": "roman@example.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2026-11-21T23:14:32.475187+00:00",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 103,
+    "fields": {
+      "password": "pbkdf2_sha256$870000$JkgdcQ4yaqzRGMz8qOZCBJ$JJjdZDsp7ZM/RXJOvxS0PFipbjFjYc1GmB6eN3Purrg=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "asya",
+      "first_name": "",
+      "last_name": "",
+      "email": "asya@example.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2026-11-21T23:14:33.274103+00:00",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 104,
+    "fields": {
+      "password": "pbkdf2_sha256$870000$RYH1qzdpIQYt7b9vCYHye0$1WeLvAYIXDeDWNYyq1+IdiWhIwhlKhDpJ0w1aVnmvvs=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "kirill",
+      "first_name": "",
+      "last_name": "",
+      "email": "kirill@example.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2026-11-21T23:14:34.001392+00:00",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 105,
+    "fields": {
+      "password": "pbkdf2_sha256$870000$K8cjqCg2NQij4Jn6nXTHAO$Jrwd0D/opKDU1rsgzuo9HhGaO8Ad+e4He94wyUsKC3w=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "vera",
+      "first_name": "",
+      "last_name": "",
+      "email": "vera@example.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2026-11-21T23:14:34.701155+00:00",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 106,
+    "fields": {
+      "password": "",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "demo1",
+      "first_name": "",
+      "last_name": "",
+      "email": "demo1@example.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2026-11-22T03:12:17.000869+00:00",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 107,
+    "fields": {
+      "password": "",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "demo2",
+      "first_name": "",
+      "last_name": "",
+      "email": "demo2@example.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2026-11-22T03:12:17.017824+00:00",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 108,
+    "fields": {
+      "password": "",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "demo3",
+      "first_name": "",
+      "last_name": "",
+      "email": "demo3@example.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2026-11-22T03:12:17.028795+00:00",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 109,
+    "fields": {
+      "password": "",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "demo4",
+      "first_name": "",
+      "last_name": "",
+      "email": "demo4@example.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2026-11-22T03:12:17.039233+00:00",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 110,
+    "fields": {
+      "password": "",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "demo5",
+      "first_name": "",
+      "last_name": "",
+      "email": "demo5@example.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2026-11-22T03:12:17.049214+00:00",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 111,
+    "fields": {
+      "password": "",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "demo6",
+      "first_name": "",
+      "last_name": "",
+      "email": "demo6@example.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2026-11-22T03:12:17.058719+00:00",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "core.author",
+    "pk": 1,
+    "fields": {
+      "user": 100,
+      "name": "Луна Полярная",
+      "category": "музыка",
+      "about": "Пишу тихие песни про север",
+      "created_at": "2026-11-21T23:14:31.693991+00:00"
+    }
+  },
+  {
+    "model": "core.author",
+    "pk": 2,
+    "fields": {
+      "user": 101,
+      "name": "Мира Ветрова",
+      "category": "иллюстрация",
+      "about": "Рисую города, которых нет",
+      "created_at": "2026-11-21T23:14:32.433491+00:00"
+    }
+  },
+  {
+    "model": "core.author",
+    "pk": 3,
+    "fields": {
+      "user": 102,
+      "name": "Роман Байт",
+      "category": "код",
+      "about": "Учу писать чистый Python",
+      "created_at": "2026-11-21T23:14:33.248173+00:00"
+    }
+  },
+  {
+    "model": "core.author",
+    "pk": 4,
+    "fields": {
+      "user": 103,
+      "name": "Ася Тихая",
+      "category": "тексты",
+      "about": "Рассказы и заметки о простом",
+      "created_at": "2026-11-21T23:14:33.962475+00:00"
+    }
+  },
+  {
+    "model": "core.author",
+    "pk": 5,
+    "fields": {
+      "user": 104,
+      "name": "Кирилл Норд",
+      "category": "фото",
+      "about": "Плёночные прогулки по городу",
+      "created_at": "2026-11-21T23:14:34.671987+00:00"
+    }
+  },
+  {
+    "model": "core.author",
+    "pk": 6,
+    "fields": {
+      "user": 105,
+      "name": "Вера Свет",
+      "category": "подкасты",
+      "about": "Разговоры о книгах и людях",
+      "created_at": "2026-11-21T23:14:35.355258+00:00"
+    }
+  },
+  {
+    "model": "core.tier",
+    "pk": 1,
+    "fields": {
+      "author": 1,
+      "name": "Слушатель",
+      "price": 149,
+      "description": "Новые треки раньше всех"
+    }
+  },
+  {
+    "model": "core.tier",
+    "pk": 2,
+    "fields": {
+      "author": 1,
+      "name": "Близкий круг",
+      "price": 349,
+      "description": "Демо, черновики и чат"
+    }
+  },
+  {
+    "model": "core.tier",
+    "pk": 3,
+    "fields": {
+      "author": 2,
+      "name": "Искра",
+      "price": 199,
+      "description": "Все открытые посты"
+    }
+  },
+  {
+    "model": "core.tier",
+    "pk": 4,
+    "fields": {
+      "author": 2,
+      "name": "Огонь",
+      "price": 499,
+      "description": "Закрытые посты и чат"
+    }
+  },
+  {
+    "model": "core.tier",
+    "pk": 5,
+    "fields": {
+      "author": 2,
+      "name": "Пламя",
+      "price": 999,
+      "description": "Всё, включая исходники"
+    }
+  },
+  {
+    "model": "core.tier",
+    "pk": 6,
+    "fields": {
+      "author": 3,
+      "name": "Читатель",
+      "price": 249,
+      "description": "Разборы и примеры"
+    }
+  },
+  {
+    "model": "core.tier",
+    "pk": 7,
+    "fields": {
+      "author": 3,
+      "name": "Практика",
+      "price": 590,
+      "description": "Задания с проверкой"
+    }
+  },
+  {
+    "model": "core.tier",
+    "pk": 8,
+    "fields": {
+      "author": 4,
+      "name": "Письма",
+      "price": 99,
+      "description": "Новые истории"
+    }
+  },
+  {
+    "model": "core.tier",
+    "pk": 9,
+    "fields": {
+      "author": 4,
+      "name": "Все тексты",
+      "price": 199,
+      "description": "Архив и черновики"
+    }
+  },
+  {
+    "model": "core.tier",
+    "pk": 10,
+    "fields": {
+      "author": 5,
+      "name": "Прогулки",
+      "price": 299,
+      "description": "Серии снимков"
+    }
+  },
+  {
+    "model": "core.tier",
+    "pk": 11,
+    "fields": {
+      "author": 5,
+      "name": "Плёнка",
+      "price": 599,
+      "description": "Сканы и настройки"
+    }
+  },
+  {
+    "model": "core.tier",
+    "pk": 12,
+    "fields": {
+      "author": 6,
+      "name": "Слушатель",
+      "price": 129,
+      "description": "Выпуски без рекламы"
+    }
+  },
+  {
+    "model": "core.tier",
+    "pk": 13,
+    "fields": {
+      "author": 6,
+      "name": "Клуб",
+      "price": 259,
+      "description": "Обсуждения и созвоны"
+    }
+  },
+  {
+    "model": "core.post",
+    "pk": 1,
+    "fields": {
+      "author": 1,
+      "title": "Тихий север",
+      "text": "Песня про место, где почти нет людей, зато много неба. Записывал дома, в наушниках слышно, как гудит холодильник.\n\nТекст писал месяц, музыку — два вечера.",
+      "tier": 2,
+      "created_at": "2026-11-21T23:14:31.713177+00:00"
+    }
+  },
+  {
+    "model": "core.post",
+    "pk": 2,
+    "fields": {
+      "author": 1,
+      "title": "Демо новой песни",
+      "text": "Черновик, который пока нравится больше готовых версий. Оставил один дубль, без обработки и метронома.",
+      "tier": null,
+      "created_at": "2026-11-21T23:14:31.720248+00:00"
+    }
+  },
+  {
+    "model": "core.post",
+    "pk": 3,
+    "fields": {
+      "author": 1,
+      "title": "Как я записываю вокал",
+      "text": "Микрофон, одеяло на стене и терпение. Рассказываю про настройки, которые у меня не меняются уже год, и про то, как бороться с шипящими.",
+      "tier": 1,
+      "created_at": "2026-11-21T23:14:31.728044+00:00"
+    }
+  },
+  {
+    "model": "core.post",
+    "pk": 4,
+    "fields": {
+      "author": 2,
+      "title": "Как рождается город, которого нет",
+      "text": "Город начинается с одной линии. Я рисую её очень легко, почти не думая, а потом дорисовываю то, что получилось: улицы, окна и мосты.\n\nНа этом этапе важно не бояться пустоты. Она оставляет место для воздуха и цвета. Ниже покажу, как один и тот же эскиз меняется за четыре шага.",
+      "tier": 4,
+      "created_at": "2026-11-21T23:14:32.459230+00:00"
+    }
+  },
+  {
+    "model": "core.post",
+    "pk": 5,
+    "fields": {
+      "author": 2,
+      "title": "Палитра для зимних сцен",
+      "text": "Зимний свет почти всегда холоднее, чем кажется. Если взять чистый серый, сцена становится плоской, поэтому я добавляю в тени немного фиолетового.\n\nВ посте — пять сочетаний, которые я использую чаще всего, и короткое объяснение, почему они не выглядят грязно.",
+      "tier": null,
+      "created_at": "2026-11-21T23:14:32.465215+00:00"
+    }
+  },
+  {
+    "model": "core.post",
+    "pk": 6,
+    "fields": {
+      "author": 2,
+      "title": "Пять эскизов из блокнота",
+      "text": "За неделю набралось пять быстрых зарисовок: двор, трамвай, мост и два наброска людей. Ничего не дорабатывал, оставил как есть.",
+      "tier": 3,
+      "created_at": "2026-11-21T23:14:32.470205+00:00"
+    }
+  },
+  {
+    "model": "core.post",
+    "pk": 7,
+    "fields": {
+      "author": 3,
+      "title": "Чистый Python: с чего начать",
+      "text": "Начинать стоит не с синтаксиса, а с привычек: короткие функции, понятные имена, никаких глобальных переменных.\n\nВ посте — пять правил, которые экономят больше времени, чем любой линтер.",
+      "tier": null,
+      "created_at": "2026-11-21T23:14:33.264130+00:00"
+    }
+  },
+  {
+    "model": "core.post",
+    "pk": 8,
+    "fields": {
+      "author": 3,
+      "title": "Разбор задачи про скобки",
+      "text": "Классическая задача на стек. Разбираю три решения: наивное, аккуратное и то, которое приятно читать через полгода.",
+      "tier": 6,
+      "created_at": "2026-11-21T23:14:33.269116+00:00"
+    }
+  },
+  {
+    "model": "core.post",
+    "pk": 9,
+    "fields": {
+      "author": 4,
+      "title": "Утро в чужом городе",
+      "text": "Просыпаешься в незнакомой квартире и первые минуты не понимаешь, где ты. Потом слышишь трамвай и вспоминаешь.",
+      "tier": null,
+      "created_at": "2026-11-21T23:14:33.979028+00:00"
+    }
+  },
+  {
+    "model": "core.post",
+    "pk": 10,
+    "fields": {
+      "author": 4,
+      "title": "Письма, которые не отправила",
+      "text": "Несколько писем, которые я писала и не решалась отправить. Собрала их в один текст, ничего не меняя.",
+      "tier": 9,
+      "created_at": "2026-11-21T23:14:33.984222+00:00"
+    }
+  },
+  {
+    "model": "core.post",
+    "pk": 11,
+    "fields": {
+      "author": 4,
+      "title": "Пять книг про дорогу",
+      "text": "Подборка для тех, кто любит медленные истории, где почти ничего не происходит, но уезжать не хочется.",
+      "tier": null,
+      "created_at": "2026-11-21T23:14:33.989790+00:00"
+    }
+  },
+  {
+    "model": "core.post",
+    "pk": 12,
+    "fields": {
+      "author": 4,
+      "title": "Черновик рассказа",
+      "text": "Первый вариант, который ещё не показывал редактору. Буду рад замечаниям в комментариях.",
+      "tier": 8,
+      "created_at": "2026-11-21T23:14:33.996439+00:00"
+    }
+  },
+  {
+    "model": "core.post",
+    "pk": 13,
+    "fields": {
+      "author": 5,
+      "title": "Плёнка зимой",
+      "text": "Снимал на 400 единиц при минус десяти. Половина кадров ушла в брак, зато оставшиеся выглядят так, как я хотел.",
+      "tier": null,
+      "created_at": "2026-11-21T23:14:34.691126+00:00"
+    }
+  },
+  {
+    "model": "core.post",
+    "pk": 14,
+    "fields": {
+      "author": 5,
+      "title": "Прогулка по набережной",
+      "text": "Час до заката, пустая набережная и один чай в термосе. Двенадцать кадров, из них удачных — четыре.",
+      "tier": 10,
+      "created_at": "2026-11-21T23:14:34.697110+00:00"
+    }
+  },
+  {
+    "model": "core.post",
+    "pk": 15,
+    "fields": {
+      "author": 6,
+      "title": "Выпуск 12: книги о зиме",
+      "text": "Говорим о трёх книгах, где зима — не фон, а действующее лицо. Плюс короткий разговор о том, зачем вообще читать про холод.",
+      "tier": 13,
+      "created_at": "2026-11-21T23:14:35.372489+00:00"
+    }
+  },
+  {
+    "model": "core.post",
+    "pk": 16,
+    "fields": {
+      "author": 6,
+      "title": "Разговор с переводчиком",
+      "text": "О том, как переводить шутки, которые не работают на другом языке, и почему иногда лучше потерять смысл, чем ритм.",
+      "tier": null,
+      "created_at": "2026-11-21T23:14:35.380468+00:00"
+    }
+  },
+  {
+    "model": "core.post",
+    "pk": 17,
+    "fields": {
+      "author": 6,
+      "title": "Что читать в декабре",
+      "text": "Пять коротких книг на месяц, когда хочется читать, но не хочется думать.",
+      "tier": 12,
+      "created_at": "2026-11-21T23:14:35.388447+00:00"
+    }
+  },
+  {
+    "model": "core.subscription",
+    "pk": 1,
+    "fields": {
+      "user": 107,
+      "tier": 2,
+      "active": true,
+      "created_at": "2026-11-22T03:12:17.023810+00:00"
+    }
+  },
+  {
+    "model": "core.subscription",
+    "pk": 2,
+    "fields": {
+      "user": 108,
+      "tier": 6,
+      "active": true,
+      "created_at": "2026-11-22T03:12:17.033782+00:00"
+    }
+  },
+  {
+    "model": "core.subscription",
+    "pk": 3,
+    "fields": {
+      "user": 109,
+      "tier": 9,
+      "active": true,
+      "created_at": "2026-11-22T03:12:17.044228+00:00"
+    }
+  },
+  {
+    "model": "core.subscription",
+    "pk": 4,
+    "fields": {
+      "user": 110,
+      "tier": 1,
+      "active": true,
+      "created_at": "2026-11-22T03:12:17.054200+00:00"
+    }
+  },
+  {
+    "model": "core.subscription",
+    "pk": 5,
+    "fields": {
+      "user": 111,
+      "tier": 7,
+      "active": true,
+      "created_at": "2026-11-22T03:12:17.063822+00:00"
+    }
+  },
+  {
+    "model": "core.donation",
+    "pk": 1,
+    "fields": {
+      "user": 106,
+      "author": 1,
+      "amount": 300,
+      "message": "Спасибо за разбор палитры",
+      "created_at": "2026-11-21T23:14:31.693991+00:00"
+    }
+  },
+  {
+    "model": "core.donation",
+    "pk": 2,
+    "fields": {
+      "user": 107,
+      "author": 2,
+      "amount": 500,
+      "message": "Жду новые эскизы",
+      "created_at": "2026-11-21T23:14:32.433491+00:00"
+    }
+  },
+  {
+    "model": "core.donation",
+    "pk": 3,
+    "fields": {
+      "user": 108,
+      "author": 3,
+      "amount": 150,
+      "message": "Поддержка",
+      "created_at": "2026-11-21T23:14:33.248173+00:00"
+    }
+  },
+  {
+    "model": "core.donation",
+    "pk": 4,
+    "fields": {
+      "user": 109,
+      "author": 1,
+      "amount": 1000,
+      "message": "За исходники отдельное спасибо",
+      "created_at": "2026-11-21T23:14:31.693991+00:00"
+    }
+  },
+  {
+    "model": "core.donation",
+    "pk": 5,
+    "fields": {
+      "user": 110,
+      "author": 4,
+      "amount": 250,
+      "message": "Очень нравится, как ты пишешь",
+      "created_at": "2026-11-21T23:14:33.962475+00:00"
+    }
+  }
+]
